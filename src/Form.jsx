@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Form = ({handleSubmit,handleChange,details,a}) => {
-  console.log(a)
+  // console.log(a)
   return (
     <div style={{padding:'5px'}}>
       <form action="" >

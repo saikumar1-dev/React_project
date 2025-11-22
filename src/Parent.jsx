@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from './Form'
 import Display from './Display'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import './global.css'
 
 const Parent = () => {
@@ -10,8 +10,17 @@ const Parent = () => {
         productprice:'',
         productdescription:'',
     }
+    
+    let no=true;
     let [details,setDetails]=useState(detail)
     let [items,setItems]=useState([]);
+
+    useEffect(() => {
+      const a=(JSON.parse(localStorage.getItem('items')));
+      setItems(a);
+    }, []); 
+    
+
     let [eid,setId]=useState();
     let handleSubmit=(e)=>{
         e.preventDefault();
@@ -25,8 +34,9 @@ const Parent = () => {
           setItems([...items,details]) 
         }
         setDetails(detail)
-        
-    }
+        storage();
+      }
+   
     let handleChange=(e)=>{
         let {name,value}=e.target;
         setDetails({...details,[name]:value});
@@ -37,8 +47,11 @@ const Parent = () => {
         copy.splice(e.target.id,1);
         setItems(copy);
         // console.log(items)
+        storage();
     }
-    
+    useEffect(()=>{
+      localStorage.setItem('items',JSON.stringify(items));
+    },[items])
     let handleEdit=(e)=>{
       let copy=[...items];
       let [obj]=copy.slice(e.target.id,e.target.id+1)

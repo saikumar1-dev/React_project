@@ -12,7 +12,7 @@ const Display = ({items,handleDelete,handleEdit}) => {
                     <h4>product description : {value.productdescription}</h4>
                     <button id={index} className='btn' onClick={handleEdit}>Edit</button><button id={index} className='btn' onClick={handleDelete}>delete</button>
                 </div>
-            )
+            ) 
         })}
       
     </div>
